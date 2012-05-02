@@ -28,13 +28,14 @@ import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
 public class PropertyUtils {
 
     /** アプリケーション設定 */
-    private static FileConfiguration config;
+    private static final FileConfiguration config;
     static {
         try {
             String propertyName = System.getProperty("applicationProperty", "application.properties");
             config = new PropertiesConfiguration(propertyName);
             config.setReloadingStrategy(new FileChangedReloadingStrategy());
         } catch (ConfigurationException e) {
+            // TODO
             throw new RuntimeException(e);
         }
     }
